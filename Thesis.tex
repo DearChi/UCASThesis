@@ -21,7 +21,7 @@
 %---------------------------------------------------------------------------%
 %->> Document settings
 %---------------------------------------------------------------------------%
-\usepackage[authoryear,myhdr,list]{Style/artratex}% document settings
+\usepackage[numbers,myhdr,list]{Style/artratex}% document settings
 %- usage: \usepackage[option1,option2,...,optionN]{artratex}
 %- Multiple optional arguments:
 %- [bibtex|biber]% set bibliography processor and package
@@ -47,6 +47,7 @@
 %---------------------------------------------------------------------------%
 %->> Document content 
 %---------------------------------------------------------------------------%
+\newcommand{\todo}[1]{\textcolor{red}{\textit{#1}}}
 \begin{document}
 %-
 %-> Frontmatter: title page, abstract, content list, symbol list, preface
