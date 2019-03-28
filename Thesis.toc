@@ -1,0 +1,44 @@
+\contentsline {chapter}{\numberline {第1章\hspace {.3em}}绪论}{1}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}选题的背景及意义}{1}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}国内外研究现状}{2}{section.1.2}% 
+\contentsline {subsection}{\numberline {1.2.1}光照的表示}{2}{subsection.1.2.1}% 
+\contentsline {subsection}{\numberline {1.2.2}使用光探测物估计光照}{3}{subsection.1.2.2}% 
+\contentsline {subsection}{\numberline {1.2.3}使用特定设备估计光照}{4}{subsection.1.2.3}% 
+\contentsline {subsection}{\numberline {1.2.4}使用额外信息估计光照}{5}{subsection.1.2.4}% 
+\contentsline {subsection}{\numberline {1.2.5}使用简化的光照模型}{7}{subsection.1.2.5}% 
+\contentsline {subsection}{\numberline {1.2.6}基于图像分析估计光照}{8}{subsection.1.2.6}% 
+\contentsline {subsection}{\numberline {1.2.7}用户交互辅助估计光照}{8}{subsection.1.2.7}% 
+\contentsline {subsection}{\numberline {1.2.8}光照估计相关数据集}{8}{subsection.1.2.8}% 
+\contentsline {subsection}{\numberline {1.2.9}利用深度学习工具估计光照}{8}{subsection.1.2.9}% 
+\contentsline {chapter}{\numberline {第2章\hspace {.3em}}光照估计数据集}{9}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}引言}{9}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}高动态范围全景图像}{9}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}全景图像}{9}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.2}高动态范围全景图像}{9}{subsection.2.2.2}% 
+\contentsline {subsection}{\numberline {2.2.3}拍摄与合成}{9}{subsection.2.2.3}% 
+\contentsline {section}{\numberline {2.3}光照估计数据集}{9}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}讨论}{9}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}本章小结}{9}{section.2.5}% 
+\contentsline {chapter}{\numberline {第3章\hspace {.3em}}基于深度学习的光照估计方法}{11}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}引言}{11}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}相关工作}{11}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}问题求解范围}{11}{section.3.3}% 
+\contentsline {section}{\numberline {3.4}光照分布的球形谐波表示}{11}{section.3.4}% 
+\contentsline {section}{\numberline {3.5}卷积神经网络结构}{11}{section.3.5}% 
+\contentsline {section}{\numberline {3.6}损失函数}{11}{section.3.6}% 
+\contentsline {section}{\numberline {3.7}实验结果与评估}{11}{section.3.7}% 
+\contentsline {section}{\numberline {3.8}深入研究光照估计网络}{11}{section.3.8}% 
+\contentsline {section}{\numberline {3.9}讨论}{11}{section.3.9}% 
+\contentsline {section}{\numberline {3.10}本章小结}{11}{section.3.10}% 
+\contentsline {chapter}{\numberline {第4章\hspace {.3em}}光照估计的应用}{13}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}引言}{13}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}电脑端应用}{13}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}移动端应用}{13}{section.4.3}% 
+\contentsline {section}{\numberline {4.4}本章小结}{13}{section.4.4}% 
+\contentsline {chapter}{\numberline {第5章\hspace {.3em}}总结与展望}{15}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}本文工作总结}{15}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}未来工作展望}{15}{section.5.2}% 
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}附录}{17}{appendix.A}% 
+\contentsline {chapter}{参考文献}{19}{section*.13}% 
+\contentsline {chapter}{作者简历及攻读学位期间发表的学术论文与研究成果}{19}{appendix*.14}% 
+\contentsline {chapter}{致谢}{21}{appendix*.19}% 
