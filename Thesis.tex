@@ -47,6 +47,8 @@
 %---------------------------------------------------------------------------%
 %->> Document content 
 %---------------------------------------------------------------------------%
+\usepackage{url}
+\def\degree{${}^{\circ}$}
 \newcommand{\todo}[1]{\textcolor{red}{\textit{#1}}}
 \begin{document}
 %-
@@ -57,6 +59,7 @@
 {% content list region
 \linespread{1.2}% local line space
 %\intotoc{\contentsname}% add link to contents table and bookmark
+\setcounter{tocdepth}{1}
 \tableofcontents% contents catalog
 %\intotoc{\listfigurename}% add link to contents table and bookmark
 \listoffigures% figures catalog
