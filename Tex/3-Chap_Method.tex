@@ -1,6 +1,51 @@
-\chapter{基于深度学习的光照估计方法}\label{chap:illumination-estimation}
+\chapter{一种基于深度学习的光照估计方法}\label{chap:illumination-estimation}
 \section{引言}
+从有限的图像信息估计出整个场景的光照分布是一个复杂的问题。
+首先，图像的视野范围比较有限，
+例如一张视场角（FOV）为60°的照片所拍摄到的区域，在其对应的全景图中占比不足6\%。
+此外，一幅图片是光照分布、场景几何结构、物体材质、摄相机参数等多个单位之间的复杂交互结果
+（公式~\ref{eq:complex-interaction-result}）。
+\begin{equation} \centering \label{eq:complex-interaction-result}
+Image = ComplexInteraction(Light, Geometry, Material, Camera)\end{equation}
+通过公式\ref{eq:complex-interaction-result}可以看出，
+在其它三个信息未知的情况下，从图像（Image）反推出光照（Light）是一个严重的不适定（ill-posed)问题。
+不仅如此，在不同的条件下拍摄的彩色图像可能存在很多误差。
+例如图像中的过曝光/欠曝光区域、相机畸变、不正确的白平衡等。
+这些都会对光照估计造成一定程度的干扰，增加光照估计的难度。
+
+为了降低问题的难度，研究者们尝试对该问题进行约束或简化。在利用传统方法估计光照时，简化的方式通常是增加输入的信息或者减少要估计的光照模型规模。一部分工作使用更多的输入信息辅助估计场景光照。Sato等人\cite{sato1999acquiring}、Nishino\cite{nishino2001determining}等人、Yu\cite{yu2006sparse}等人使用多张图片作为输入。Knecht\cite{knecht2012reciprocal}等人、Meilland\cite{meilland20133d}等人、Zhang等人\cite{zhang2016emptying}、Barron和Mailk\cite{barron2013intrinsic}等使用额外的深度信息估计光照。还有一些工作使用已知的几何信息辅助估计光照\cite{ramamoorthi2001signal, sato2003illumination, li2003multiple}。
+另一部分工作通过使用低维的光照表示模型来简化光照估计问题，例如使用球形谐波函数（SH)来拟合场景光照\cite{ramamoorthi2001signal,kemelmacher20113d,garrido2013reconstructing,
+knorr2014real,li2014intrinsic,barron2015shape, rematas2016deep}。通过使用SH，场景光照的低频部分可以使用少量的系数（通常为9-16组，约27-48个）来近似，这极大地减少了光照估计的难度，与之类似，Barronhe和Malik\cite{okabe2004spherical}在光照估计问题中使用的小波函数来近似场景光照。还有一些光照估计工作\cite{sato1999acquiring,  panagopoulos2011illumination, wang2002estimation, li2003multiple, sato2003illumination}将光照分布简化为若干个点光源的集合，进而将光照分布估计问题转化为预测光源数量、位置和大小的问题。对于室外场景中的光照估计问题，使用基于物理的室外光照模型\cite{lalonde2008does, lalonde2010sun, lalonde2012estimating, sunkavalli2008color}可以使用更少的参数表示更精确的室外场景光照信息。
+
+近年来，深度学习在多种计算机视觉问题上大放异彩，用于分割、检测、标识、分类的神经网络层出不穷。
+一些研究者尝试将深度学习应用在光照估计问题当中。
+\todo{Related learning based methods.}
+不过，目前已有的深度学习方法也有一定的局限性。
+训练一个鲁棒的神经网络往往需要大量的数据，而目前用于光照估计问题的数据集比较有限，主要包括：
+大规模的低动态范围全景数据集（SUN360\todo{CITE}等）和
+中小规模特定场景的高动态范围全景数据集（Laval Indoor等\todo{CITE}）。
+这些数据集在规模和质量上很难同时到达训练深度神经网络的要求。
+
+在这样的背景下，本文在光照估计的两个方向开展研究。
+其一是构建一个具有一定规模和质量光照估计的数据集。
+这样的数据集不仅能被用来训练更加鲁棒的光照估计网络，也可以被应用到其它多种相关的深度学习问题当中。
+这一部分是章节\ref{chap:dataset}的主要工作。
+其二是在已有数据集和本文构建的数据集基础上，深入探索基于深度学习的光照估计方法，
+对其中的网络结构，网络参数，损失函数，光照表示等多个模块进行细致的对比和研究。
+这是本章节的所述工作的主要目标。
+
+本章的工作内容和创新贡献主要有以下几点：
+\begin{itemize}
+    \item 首次提出使用前两张相对视角的图片作为光照估计的输入。这两张图片多由相机的前后置摄像头拍摄，使用前后摄像头同时拍摄两张照片不仅不会增加获取图片的步骤，还可以极大地降低光照估计的难度。现代移动设备几乎都包含前后至少两个摄像头，因此本文所提方法对于智能应用来说有着很大的实际意义。
+    \item 构建了一个基于深度学习的光照估计网络模型，该网络模型使用两张图片作为输入，估计预测出场景中光照对应的球形谐波系数，该模型在光照估计问题中非常有效，目前已经取得了超过state-of-the-art的结果。
+    \item 提出了一个新的损失函数 - Render Loss，该损失函数巧妙地利用了SH的特性，将部分渲染过程置于神经网络中，这样可以在渲染结果上添加监督信息，指导网络训练。提出的方法算法简洁但非常有效，极大地提高了光照估计的表现。
+    \item 对提出的光照估计深度学习模型和损失函数进行十分详尽的实验和分析，对于光照估计网络结构和训练过程中各个模块，深入探索了使用不同网络结构的特点和对结果的影响，促进了对基于深度学习光照估计的理解。
+\end{itemize}
+
 \section{相关工作}
+\subsection{深度学习}
+\subsection{光照估计}
+\subsection{网络内渲染}
 \section{问题求解范围}
 \section{光照分布的球形谐波表示}
 \section{卷积神经网络结构}
