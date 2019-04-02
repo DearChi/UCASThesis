@@ -1,4 +1,4 @@
-\chapter{一种基于深度学习的光照估计方法}\label{chap:illumination-estimation}
+\chapter{基于深度学习的光照估计方法}\label{chap:illumination-estimation}
 \section{引言}
 从有限的图像信息估计出整个场景的光照分布是一个复杂的问题。
 首先，图像的视野范围比较有限，
@@ -22,8 +22,8 @@ knorr2014real,li2014intrinsic,barron2015shape, rematas2016deep}。通过使用SH
 \todo{Related learning based methods.}
 不过，目前已有的深度学习方法也有一定的局限性。
 训练一个鲁棒的神经网络往往需要大量的数据，而目前用于光照估计问题的数据集比较有限，主要包括：
-大规模的低动态范围全景数据集（SUN360\todo{CITE}等）和
-中小规模特定场景的高动态范围全景数据集（Laval Indoor等\todo{CITE}）。
+大规模的低动态范围全景数据集（SUN360\cite{xiao2012recognizing}等）和
+中小规模特定场景的高动态范围全景数据集（Laval Indoor等\cite{gardner2017learning}）。
 这些数据集在规模和质量上很难同时到达训练深度神经网络的要求。
 
 在这样的背景下，本文在光照估计的两个方向开展研究。
