@@ -1,0 +1,7 @@
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Img/data-network.pdf}
+    \caption[用于评估数据集的卷积神经网络结构]
+    {用于评估数据集的卷积神经网络结构。该网络以图片作为输入，输出光照对应的SH系数。网络结构以Resnet-50\cite{he2016deep}为基础，将最后一层pooling层替换为5个全连接层。除最后一层外，每层之后都有BN和RELU激活函数。}
+    \label{fig:data-network}
+\end{figure}
