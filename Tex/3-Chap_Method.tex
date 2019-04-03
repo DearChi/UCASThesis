@@ -4,32 +4,29 @@
 首先，图像的视野范围比较有限，
 例如一张视场角（FOV）为60°的照片所拍摄到的区域，在其对应的全景图中占比不足6\%。
 此外，一幅图片是光照分布、场景几何结构、物体材质、摄相机参数等多个单位之间的复杂交互结果
-（公式~\ref{eq:complex-interaction-result}）。
-\begin{equation} \centering \label{eq:complex-interaction-result}
+（公式~\ref{eq:complex-interaction-result-2}）。
+\begin{equation} \centering \label{eq:complex-interaction-result-2}
 Image = ComplexInteraction(Light, Geometry, Material, Camera)\end{equation}
-通过公式\ref{eq:complex-interaction-result}可以看出，
+通过公式\ref{eq:complex-interaction-result-2}可以看出，
 在其它三个信息未知的情况下，从图像（Image）反推出光照（Light）是一个严重的不适定（ill-posed)问题。
 不仅如此，在不同的条件下拍摄的彩色图像可能存在很多误差。
 例如图像中的过曝光/欠曝光区域、相机畸变、不正确的白平衡等。
 这些都会对光照估计造成一定程度的干扰，增加光照估计的难度。
 
-为了降低问题的难度，研究者们尝试对该问题进行约束或简化。在利用传统方法估计光照时，简化的方式通常是增加输入的信息或者减少要估计的光照模型规模。一部分工作使用更多的输入信息辅助估计场景光照。Sato等人\cite{sato1999acquiring}、Nishino\cite{nishino2001determining}等人、Yu\cite{yu2006sparse}等人使用多张图片作为输入。Knecht\cite{knecht2012reciprocal}等人、Meilland\cite{meilland20133d}等人、Zhang等人\cite{zhang2016emptying}、Barron和Mailk\cite{barron2013intrinsic}等使用额外的深度信息估计光照。还有一些工作使用已知的几何信息辅助估计光照\cite{ramamoorthi2001signal, sato2003illumination, li2003multiple}。
-另一部分工作通过使用低维的光照表示模型来简化光照估计问题，例如使用球形谐波函数（SH)来拟合场景光照\cite{ramamoorthi2001signal,kemelmacher20113d,garrido2013reconstructing,
-knorr2014real,li2014intrinsic,barron2015shape, rematas2016deep}。通过使用SH，场景光照的低频部分可以使用少量的系数（通常为9-16组，约27-48个）来近似，这极大地减少了光照估计的难度，与之类似，Barronhe和Malik\cite{okabe2004spherical}在光照估计问题中使用小波函数来近似场景光照。还有一些光照估计工作\cite{sato1999acquiring,  panagopoulos2011illumination, wang2002estimation, li2003multiple, sato2003illumination}将光照分布简化为若干个点光源的集合，进而将光照分布估计问题转化为预测光源数量、位置和大小的问题。对于室外场景中的光照估计问题，使用基于物理的室外光照模型\cite{lalonde2008does, lalonde2010sun, lalonde2012estimating, sunkavalli2008color}可以使用更少的参数表示更精确的室外场景光照信息。
+为了降低问题的难度，研究者们尝试对该问题进行约束或简化。在利用传统方法估计光照时，简化的方式通常是增加输入的信息或者减少要估计的光照模型规模。一部分工作使用更多的输入信息辅助估计场景光照。例如
+深度信息\cite{knecht2012reciprocal,meilland20133d,zhang2016emptying,barron2013intrinsic}
+几何信息\cite{ramamoorthi2001signal,sato2003illumination,li2003multiple}
+多张图片\cite{sato1999acquiring,nishino2001determining,yu2006sparse}
+先验知识\cite{nishino2004eyes,barron2015shape,lopez2010compositing}
+用户标记\cite{lopez2010compositing,karsch2011rendering}等等。另一部分工作通过使用低维的光照表示模型来简化光照估计问题，例如使用球形谐波函数（SH)来拟合场景光照\cite{ramamoorthi2001signal,kemelmacher20113d,garrido2013reconstructing, knorr2014real,
+li2014intrinsic,barron2015shape, rematas2016deep}、使用小波函数近似场景光照\cite{okabe2004spherical}、光照分布简化为若干个点光源的集合\cite{sato1999acquiring,  panagopoulos2011illumination, wang2002estimation, li2003multiple, sato2003illumination}、使用基于物理的室外光照模型\cite{lalonde2008does, lalonde2010sun, lalonde2012estimating, sunkavalli2008color}等。
 
-近年来，深度学习在多种计算机视觉问题上大放异彩，用于分割、检测、标识、分类的神经网络层出不穷。
-一些研究者尝试将深度学习应用在光照估计问题当中。
-\todo{Related learning based methods.}
-不过，目前已有的深度学习方法也有一定的局限性。
-训练一个鲁棒的神经网络往往需要大量的数据，而目前用于光照估计问题的数据集比较有限，主要包括：
-大规模的低动态范围全景数据集（SUN360\cite{xiao2012recognizing}等）和
-中小规模特定场景的高动态范围全景数据集（Laval Indoor等\cite{gardner2017learning}）。
-这些数据集在规模和质量上很难同时到达训练深度神经网络的要求。
+近年来，一些研究者尝试将深度学习方法应用在光照估计问题当中。Hold-Geoffroy等人\cite{hold2017deep}搭建了一个深度卷积神经网络从室外图片中恢复出室外场景的参数化光照模型。Gardner等人\cite{gardner2017learning}从室内图片中直接估计HDR全景图像。这两个方法是目前单图片光照估计工作中最先进的方法。不过，目前已有的深度学习方法也有一定的局限性。训练一个鲁棒的神经网络往往需要大量的数据，而目前用于光照估计问题的数据集比较有限，主要包括：大规模的低动态范围全景数据集（SUN360\cite{xiao2012recognizing}等）和中小规模特定场景的高动态范围全景数据集（Laval Indoor等\cite{gardner2017learning}）。这些数据集在规模和质量上很难同时到达训练深度神经网络的要求。
 
-在这样的背景下，本文在光照估计的两个方向开展研究。
+在这样的背景下，本文在光照估计的两个方向上开展研究。
 其一是构建一个具有一定规模和质量光照估计的数据集。
-这样的数据集不仅能被用来训练更加鲁棒的光照估计网络，也可以被应用到其它多种相关的深度学习问题当中。
-这一部分是章节\ref{chap:dataset}的主要工作。
+这样的数据集不仅能被用来训练更加鲁棒的光照估计网络，也可以被应用到其它多种相关的深度学习问题当中，
+上一章节对这一部分工作进行了详细的介绍。
 其二是在已有数据集和本文构建的数据集基础上，深入探索基于深度学习的光照估计方法，
 对其中的网络结构，网络参数，损失函数，光照表示等多个模块进行细致的对比和研究。
 这是本章节的所述工作的主要目标。
@@ -44,8 +41,22 @@ knorr2014real,li2014intrinsic,barron2015shape, rematas2016deep}。通过使用SH
 
 \section{相关工作}
 \subsection{深度学习}
-\subsection{光照估计}
-\subsection{网络内渲染}
+卷积神经网络（CNN）最早由Lecun等人\cite{lecun1998gradient}在1998年提出. 随着计算机显卡性能的提高和超大规模数据集（例如ImageNet\cite{deng2009imagenet}，ShapeNet\cite{chang2015shapenet}）的建立，深度学习在多个领域成为了一个强力的工具。近年来，为了解决各种类型的问题，卷积神经网络结构层出不穷，例如AlexNet~\cite{krizhevsky2012imagenet}, VGG~\cite{simonyan2014very}, ResNet~\cite{he2016deep}。它们在许多视觉问题中超越了传统方法中取得的非常好的成绩，例如物体检测\cite{girshick2014rich}、图像分类\cite{krizhevsky2012imagenet}、图像分割\cite{ronneberger2015u}等等。近期，卷积神经网络也被应用到了传统的图形学问题中，例如渲染降噪\cite{chaitanya2017interactive}、人脸模拟\cite{karras2017audio}等等，都取得了很好的结果。
+\subsection{传统光照估计方法}
+传统方法估计光照时，常常通过增加输入信息或者简化光照模型来降低求解难度。Sato等人\cite{sato1999acquiring}、Nishino\cite{nishino2001determining}等人、Yu\cite{yu2006sparse}等人使用多张图片作为输入。Knecht\cite{knecht2012reciprocal}等人、Meilland\cite{meilland20133d}等人、Zhang等人\cite{zhang2016emptying}、Barron和Mailk\cite{barron2013intrinsic}等使用额外的深度信息估计光照。还有一些工作使用已知的几何信息辅助估计光照\cite{ramamoorthi2001signal, sato2003illumination, li2003multiple}。
+另外一部分工作通过使用低维的光照表示模型来简化光照估计问题，例如使用球形谐波函数（SH)来拟合场景光照\cite{ramamoorthi2001signal,kemelmacher20113d,garrido2013reconstructing,
+knorr2014real,li2014intrinsic,barron2015shape, rematas2016deep}。通过使用SH，场景光照的低频部分可以使用少量的系数（通常为9-16组，约27-48个）来近似，这极大地减少了光照估计的难度，与之类似，Barronhe和Malik\cite{okabe2004spherical}在光照估计问题中使用小波函数来近似场景光照。还有一些光照估计工作\cite{sato1999acquiring,  panagopoulos2011illumination, wang2002estimation, li2003multiple, sato2003illumination}将光照分布简化为若干个点光源的集合，进而将光照分布估计问题转化为预测光源数量、位置和大小的问题。对于室外场景中的光照估计问题，使用基于物理的室外光照模型\cite{lalonde2008does, lalonde2010sun, lalonde2012estimating, sunkavalli2008color}可以使用更少的参数表示更精确的室外场景光照信息。
+\subsection{基于深度学习的光照估计方法}
+
+近期许多工作尝试使用深度学习解决光照估计问题。和传统方法类似，使用深度学习求解光照估计问题时也会借助一些辅助信息、探测物等。Calian等人\cite{calian2018faces}使用人脸作为光探测物，搭建了神经网络从照片恢复出室外场景的光照。Yi等人\cite{yi2018faces}搭建了一个高光提取神经网络和阴影反照率估计网络，来从人脸照片中恢复出室内外场景的光照信息。
+Georgoulis等人\cite{georgoulis2016delight}使用真实反射图作为输入，用两个不同的CNN结构将图片分解为材质变量和光照变量。之后Geogoulis等人\cite{georgoulis2016natural}又尝试利用深度学习从包含多种已知材质的物体图片中恢复出反射图和光照分布。Mandl等人\cite{mandl2017learning}、Weber等人\cite{weber2018learning}也是借用了已知的物体几何恢复出场景光照。虽然这些光照方法和传统方法类似，也借助了一些额外的信息。但通过将传统方法中复杂的算法步骤替换为用深度学习求解，往往能取得更好的结果，这通常得益于大规模的训练数据。
+
+使用深度学习求解光照估计问题时，也会使与传统方法中相同的光照表示模型。例如基于物理的Sun-sky模型\cite{hold2017deep}， 球形谐波函数模型\cite{mandl2017learning}等。深度学习在学习输入图像的特征时，非常有用，因此Weber等人\cite{weber2018learning}结合深度学习，使用自编码器（auto-encoder）对光照分布进行建模，使用卷积神经网络将场景编码为包含少量系数的隐变量，为光照估计问题中光照的表示提供了新的思路。
+
+考虑到CNN强大的学习能力，最近一些方法尝试使用深度学习工具直接从单张图片中恢复整个场景的光照分布。
+Holdgeoffroy等人\cite{hold2017deep}搭建了一个深度卷积神经网络从室外图片中恢复出室外场景的参数化光照模型。Gardner等人\cite{gardner2017learning}从室内图片中直接估计HDR全景图像。这两个方法是目前单图片光照估计工作中最先进的方法。
+由于HDR全景数据有限，这些方法设计了一个光源探测系统，将大量的低动态范围全景图转化为粗糙的高动态范围全景图用于训练。
+
 \section{问题求解范围}
 从视角有限的单张图片预测完整的场景光照分布是一个复杂的问题，目前已有的算法大多增加输入信息或简化光照模型两个方面来降低问题的难度。在增加输入信息方面，许多工作使用多张图片、或使用额外的深度信息、或使用已知的几何信息等。这种方式虽然可以简化光照估计问题的难度，提升光照估计效果。不过增加输入信息意味着要使用额外的设备（例如如借助深度相机）或更多的获取步骤（例如多次拍摄）。因此，需要在获取降低输入信息获取步骤与提升光照估计效果之间找到一个平衡点，即划定输入信息的规模，使得使用这个规模的信息不仅不需要过多地增加额外的步骤和设备，而且可以更大的提升光照估计的表现。
 
@@ -106,7 +117,7 @@ HDR全景图像映射为SH系数时，需要先将HDR全景图像投影到球面
 
 因此本文提出一种Render Loss，意图在训练光照估计神经网络时，增加渲染结果上的监督信息。具体的做法是先将一些3D物体渲染为一张SH Map（渲染方式参考\cite{green2003spherical}）。使用SH Map与近似光照的SH系数可以计算出该光照下物体的渲染图像：
 \begin{equation}
-    R(SH, x, y, c) = \sum^(n^2)_{i=1}SHMap(x,y,i)*SH_{c,i}
+    R(SH, x, y, c) = \sum^{n^2}_{i=1}SHMap(x,y,i)*SH_{c,i}
 \end{equation}
 
 其中$n$为近似光照所使用的SH的阶数，$c$表示渲染图的某个通道, $(x, y)$为渲染结果和SH map的图片坐标。
@@ -144,14 +155,15 @@ HDR全景图像映射为SH系数时，需要先将HDR全景图像投影到球面
             \hline
             硬件平台 & 处理器Intel6800k， 内存16G，显卡NVIDIA GTX 1080\\
             操作系统 & Ubuntu 18.04 64位\\
-            优化器    & RMS（root mean square） Prop 优化器\\
+            优化器    & RMS Prop 优化器\\
             批大小    & 16，又称batch size\\
             初始学习率 & 0.0005 \\
             学习率衰减 & 每训练2万步，学习率乘以0.9\\
             训练时间 & 100个epoch，约1200万对数据，750万步\\
             \hline            
         \end{tabular}
-        \caption{\label{table:traning-details}
+        \caption{
+            \label{table:traning-details}
             光照估计网络的训练细节。
         }
     \end{table}
