@@ -42,14 +42,14 @@
 \chapter*{摘\quad 要}\chaptermark{摘\quad 要}
 \setcounter{page}{1}% 开始页码
 \pagenumbering{Roman}% 页码符号
+光照估计是计算机视觉和计算机图形中的基础问题之一，该问题意图从图片中恢复出场景的真实光照分布。光照估计的应用场景广泛，与多种视觉和图形学问题息息相关。本文通过对已有光照估计方法的调研和分析，提出了一个基于深度学习的场景光照估计方法。该方法使用智能设备前后置相机拍摄的图片作为输入，预测出使用球形谐波函数近似的场景光照分布。为此本文搭建了一个端到端的深度卷积神经网络，并创新性地提出了一个新的损失函数——Render Loss用于在训练时指导网络参数调整，提高光照估计预测效果。本文的方法在真实场景中的效果非常理想，而且在可视结果和数值结果上都超过了目前最先进的算法。此外，本文还构建了一个大规模的高动态范围全景数据集，用于训练和测试光照估计网络。最后本文通过在光照估计数据集和光照估计网络上的大量实验，深入探究了数据的规模、多样性、网络结构、损失函数等多个模块对于光照估计效果的具体影响。
 
-
-\keywords{关键词}% 中文关键词
+\keywords{光照估计，深度学习，球形谐波函数}% 中文关键词
 %-
 %-> 英文摘要
 %-
 \chapter*{Abstract}\chaptermark{Abstract}% 摘要标题
+Illumination estimation is an essential problem in computer vision and graphics. It is widely used in many scenarios, and closely related to many vision or graphic problems. In this paper, a learning based method is proposed to recover scene illumination represented as spherical harmonic (SH) functions by pairwise photos from rear and front cameras on mobile devices. An end-to-end deep convolutional neural network (CNN) structure is designed to process images on symmetric views and predict SH coefficients. We introduce a novel Render Loss to improve the rendering quality of the predicted illumination. Experiments show that our model produces visually and quantitativelysuperior results compared to the state-of-the-arts. A high quality high dynamic range (HDR) panoramic imagedataset is developed for training and evaluation. Moreover, a series of experiment is conducted to explore how the data size, data diversity, network structure, loss function and other modules affect the illumination  estimation results.
 
-
-\KEYWORDS{keywords}% 英文关键词
+\KEYWORDS{Illumination Estimation, Deep Learning, Spherical Harmonic Lighting}% 英文关键词
 %---------------------------------------------------------------------------%
