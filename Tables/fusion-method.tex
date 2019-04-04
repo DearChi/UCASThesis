@@ -1,0 +1,39 @@
+\begin{table}[t]
+    \centering
+    \begin{tabular}{c|cc|cc} 
+     \hline
+        ~&\multicolumn{2}{c|}{RMSE}&\multicolumn{2}{c}{DSSIM}\\
+        Backbone & Concat & Sub. & Concat &Sub.\\
+    \hline
+    GoogLenet & \textbf{0.1329} & 0.1390 & \textbf{0.0696} & 0.0729 \\ \hline
+    VGG-16    & \textbf{0.1336} & 0.1399 & \textbf{0.0718} & 0.0719 \\ \hline
+    AlexNet   & \textbf{0.1239} & 0.1262 & \textbf{0.0686} & 0.0690 \\ \hline
+    \end{tabular}
+    \caption[特征融合方式对光照估计的影响]{
+    \label{table:fusion-method}
+    使用两种不同的方式融合特征提取层提取的两组特征图像，并对比它们之间的差异，结果显示在该方法中，特征拼接总是优于特征相减。}
+\end{table}
+
+% \begin{table}[t]
+%     \centering
+%     \begin{tabular}{cc|cc|cc} 
+%      \hline
+%         ~&~&\multicolumn{2}{c|}{MSE}&\multicolumn{2}{c}{DSSIM}\\
+%         Backbone & Method& Concat & Sub. & Concat &Sub.\\
+%     \hline
+%     \multirow{2}{*}{VGG-16}&(a) & \textbf{0.0088} &  {0.0096} & \textbf{0.0411}  & 0.0412\\
+%     ~&(b)& 0.0104 & 0.0104 &0.0505  &  0.0511 \\
+%     \hline
+%     \multirow{2}{*}{AlexNet}&(a)& \textbf{0.0096}  & 0.0105 &  \textbf{0.0588} & 0.0592  \\
+%     ~&(b)& 0.0112 & 0.0106 &0.0662 &  0.0737 \\
+%     \hline
+%     \multirow{2}{*}{ResNet-152}&(a)& \textbf{0.0090} & 0.0115 & 0.0502 & 0.0507   \\
+%     ~&(b)& 0.0114  & 0.0103&  0.0517 & \textbf{0.0499} \\
+%     \hline
+%     \end{tabular}
+%     \caption{
+%     \label{table:fusion-method}
+%     Comparison using different fusion layer for the convolutional feature maps of front and rear images. We use MSE and DSSIM for evaluation. (a)(b) mean two ways to use these backbones. (a) Freeze the feature extraction network and only train the illumination estimation network; (b) Train the entire network.
+%     We find that the concatenation fusion with training strategy (a) is consistently better. 
+%     }
+% \end{table}

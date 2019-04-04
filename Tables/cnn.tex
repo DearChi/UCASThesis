@@ -1,0 +1,24 @@
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{c|c|c} 
+    \hline
+    ~           &    View 1 & View 2    \\
+    \hline
+    Input       &   $224\times224\times3$  &    $224\times224\times3$ \\
+    \hline
+    Feature Extraction & \multirow{2}{*}{$5\times5\times256$} & \multirow{2}{*}{$5\times5\times256$}\\
+    Network&~&~\\
+    \hline
+    Concat & \multicolumn{2}{c}{$5\times 5\times 512$}     \\
+    \hline
+    Convs $3\times3$     & \multicolumn{2}{c}{$5\times5\times64$}\\
+    \hline
+    Dense Layers          & \multicolumn{2}{c}{$2048$->$1024$->$512$->$256$->$128$}\\
+    \hline
+    Output      & \multicolumn{2}{c}{$16\times3$}\\
+    \hline
+    \end{tabular}
+    \caption[光照估计网络结构]{\label{table:cnn}
+        光照估计网络结构。该网络分为两个部分，首先特征提取层从输入图片中提取特征图，之后特征图会在通道层拼接（concatenate）在一起。紧接通过5个卷积层和6个全连接层输出48个球形谐波系数，除最后一层外，每层后都会有batch normalization 和 Leaky RELU激活函数。
+    }
+\end{table}

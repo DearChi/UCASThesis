@@ -1,0 +1,17 @@
+\begin{table}[ht]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c} 
+     \hline
+    \multirow{1}{*}{($w_{1},w_{2}$)} & \multicolumn{2}{c|}{($0.0, 1.0$)}& \multicolumn{2}{c|}{($0.2, 0.8$)}& \multicolumn{2}{c|}{($0.5, 0.5$)}& \multicolumn{2}{c|}{($0.8, 0.2$)}& \multicolumn{2}{c}{($1.0, 0.0$)} \\ \cline{1-11}
+    ~&RMSE&DSSIM&RMSE&DSSIM&RMSE&DSSIM&RMSE&DSSIM&RMSE&DSSIM\\ \hline
+    GoogLeNet  & 0.1422 & 0.0742 & 0.1334 & 0.0712 & 0.1445 & 0.0785 & \textbf{0.1329} & \textbf{0.0696} & 0.1376 & 0.0732\\
+    VGG-16     & 0.1447 & 0.0749 & 0.1561 & 0.0768 & 0.1587 & 0.0765 & \textbf{0.1336} & 0.0718 & 0.1656 & \textbf{0.0674}\\
+    AlexNet    & 0.1247 & 0.0678 & 0.1268 & \textbf{0.0675} & 0.1479 & 0.0770 & \textbf{0.1239} & 0.0686 & 0.1267 & 0.0682\\
+    \hline 
+    \end{tabular}}
+    \caption[损失函数对光照估计的影响]{
+        \label{table:test-weight}
+        使用具有不同权重配比的损失函数训练光照估计网络，并在测试集上分析它们之间的优劣。 其中$w_1$和$w_2$对应于公式\ref {eq:loss-function}中定义的权重系数。 我们可以观察到使用混合损失函数可以提高光照估计的性能。
+    } 
+\end{table}

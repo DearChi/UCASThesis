@@ -1,0 +1,10 @@
+\begin{figure}
+    \includegraphics[width=1.0\textwidth]{Img/fig-overview.pdf}
+    \caption[光照估计网络结果一览]{
+        \label{fig:overview}
+        光照估计网络结果一览。
+        在训练阶段（蓝色区域+黄色区域），使用HDR全景图分别提取普通图片和SH系数分别作为网络输入和目标输出信息，并使用Render Loss作为监督信息。
+        在测试阶段（蓝色区域），成对的图片输入到网络中直接预测光照对应的SH系数。
+        网络结构由两部分组成，一部分是共享权重的特征提取层，另一部分是由卷积层和全连接层构成的光照估计网络。
+   }
+\end{figure}
