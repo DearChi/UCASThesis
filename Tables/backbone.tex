@@ -1,5 +1,9 @@
 \begin{table}[ht]
     \centering
+    \caption[不同特征提取网络的对比]{
+    \label{table:backbone}
+    使用不同特征提取网络的结果比较，评价指标采用RMSE和DSSIM。 对于每种来引入的网络结构和参数，使用三种方式来评估网络性能：（a）从头开始训练整个网络（train from scratch); （b）从预训练模型中微调(fine-tune)。 （c）固定特征提取网络的预训练参数，仅训练照明估计网络（freeze）。 结果表明，在不同网络中处理特征提取网络的最佳方式是不同的。 这取决于采用的骨干模型以及训练数据的大小。 基于此表格，我们使用固定参数的AlexNet作为特征提取网络。
+    }
     \begin{tabular}{c|c|c|c|c|c|c} 
      \hline
     \multirow{2}{*}{}  & \multicolumn{2}{c|}{GoogLeNet} & \multicolumn{2}{c|}{VGG-16} & \multicolumn{2}{c}{AlexNet} \\ \cline{2-7}
@@ -10,8 +14,4 @@
     (c) & 0.1329 & 0.0696 & 0.1336 & 0.0718 & \textbf{0.1239} & \textbf{0.0686} \\
     \hline 
     \end{tabular}
-    \caption[不同特征提取网络的对比]{
-    \label{table:backbone}
-    使用不同特征提取网络的结果比较，评价指标采用RMSE和DSSIM。 对于每种来引入的网络结构和参数，使用三种方式来评估网络性能：（a）从头开始训练整个网络（train from scratch); （b）从预训练模型中微调(fine-tune)。 （c）固定特征提取网络的预训练参数，仅训练照明估计网络（freeze）。 结果表明，在不同网络中处理特征提取网络的最佳方式是不同的。 这取决于采用的骨干模型以及训练数据的大小。 基于此表格，我们使用固定参数的AlexNet作为特征提取网络。
-    }
 \end{table}

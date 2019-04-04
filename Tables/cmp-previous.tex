@@ -1,5 +1,10 @@
 \begin{table}[t]
     \centering
+    \caption[本文方法与最先进方法的对比]{
+
+        \label{table:cmp-previous}
+        与最先进的方法进行定量比对，Hold-Geoffroy等人\cite{hold2017deep}和Gardner等人\cite{gardner2017learning}的工作分别适用于室外和室内图像。 本文的结果在数值上超过了这两个方法。
+    }
     \begin{tabular}{c|c|c|c|c} 
     \toprule
     Image&Metric&Ours&[HGSH]&[GSY]\\
@@ -14,9 +19,4 @@
                          ~&DSSIM&\textbf{0.0686} & 0.0776 & 0.1003\\
     \bottomrule
     \end{tabular}
-    \caption[本文方法与最先进方法的对比]{
-
-        \label{table:cmp-previous}
-        与最先进的方法进行定量比对，Hold-Geoffroy等人\cite{hold2017deep}和Gardner等人\cite{gardner2017learning}的工作分别适用于室外和室内图像。 本文的结果在数值上超过了这两个方法。
-    }
 \end{table}

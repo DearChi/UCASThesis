@@ -1,5 +1,9 @@
 \begin{table}[htbp]
     \centering
+    \caption[数据规模对光照估计的影响]{
+        \label{table:eval-data-size}
+        使用不同数量的HDR全景图训练光照估计网络。可以看出，在数据规模较小时，增加训练数据量能够为光照估计带来巨大的提升，但当数据达到一定的规模时，单纯增加训练数据量并不能起到很好的效果。
+    }
     \begin{tabular}{c|c|c|c|c|c}
         \toprule
         训练数  &  100张&  200张&  300张&  400张&  500张 \\ \hline
@@ -9,8 +13,4 @@
         RMSE &  0.1683&0.1633&0.1621&0.1614 & ~ \\
         \bottomrule
     \end{tabular}
-    \caption{
-        \label{table:eval-data-size}
-        使用不同数量的HDR全景图训练光照估计网络。可以看出，在数据规模较小时，增加训练数据量能够为光照估计带来巨大的提升，但当数据达到一定的规模时，单纯增加训练数据量并不能起到很好的效果。
-    }
 \end{table}
