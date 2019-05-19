@@ -1,2 +1,3 @@
 *.synctex.gz
 *.code-workspace
+/.vscode/
