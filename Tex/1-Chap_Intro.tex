@@ -55,9 +55,9 @@
 
 深度信息对于光照估计问题有着很大的帮助。Knecht等人\cite{knecht2012reciprocal}借助深度相机和鱼眼镜头重建场景模型并提取了光源位置。Meilland等人\cite{meilland20133d}利用深度相机实时地创建稠密的高动态范围全景图，并使用K-means 算法从环境贴图中提取点光源位置。 Barron和Mailk\cite{barron2013intrinsic}提出了一种从彩色图像和深度图像中提取本征信息的方法。他们使用具有噪声的深度图像来辅助估计场景的几何结构，并在这些信息的基础上进一步提取彩色图像中的本征信息。Zhang等人\cite{zhang2016emptying}使用RGBD相机，将拍摄到的室内场景建模为一个包含光源、材质和几何的空的房间模型，并提供了编辑模型场景的方法。
 
-\input{Figures/additional-input.tex}
 在已知场景几何或物体几何结构的情况下估计场景光照的分布也是主要的研究方向之一。例如，在表面形状类似桌子、平台、平板等结构的场景中，Li等人\cite{li2003multiple}的方法可以结合图片中的阴影、明暗、高光信息估计出多个方向的光源信息。Ramamoorthi和Hanrahan\cite{ramamoorthi2001signal}使用物体的几何结构和多个视角下的照片作为输入，估计出照片中物体的表面材质并进一步计算所在场景的静态光照信息。不过该方法需要多种假设——曲线表面、各向同性BRDF、没有多重反射等。Sato等人\cite{sato2003illumination}指出了通过物体遮挡关系估计场景光照的可行性和有效性，并通过分析给定几何的物体上的明亮区域和阴影区域，估计出了较为真实的场景光照。在给定朗伯体（Lambertian）反射的物体几何时，Wang和Samaras\cite{wang2002estimation}的方法可以从单张图片估计出多个方向的光照信息。Panagopoulos等人\cite{panagopoulos2011illumination}提出了一个新的框架，来从单幅图片和粗糙的3D几何中，恢复出光照环境和估计场景中的投影阴影，该方法描述了一个高阶马尔可夫随机场（MRF）照明模型，将低阶阴影证据与高阶先验知识相结合，用于投影阴影和照明环境的联合估计。
 
+\input{Figures/additional-input.tex}
 此外还有一些方法在已知物体类型的情况下，利用图片中物体的假设约束或先验知识来帮助估计光照。例如前文提到的Nishino和Nayar\cite{nishino2004eyes}假设人的眼球是规则的球体，并基于此假设从人眼估计场景的光照。类似的方法\cite{barron2015shape, lopez2010compositing}虽然不需要预先知道精确的场景几何结构，但都要通过图像中物体的类型得到一些先验知识、假设和约束，进而分析、预测、估计、恢复出场景光照。
 
 %% 多张图片
